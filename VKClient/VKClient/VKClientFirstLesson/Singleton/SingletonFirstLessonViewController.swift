@@ -12,7 +12,7 @@ import UIKit
 //    override func viewDidLoad() {
 //        super.viewDidLoad()
 //
-//        let session = SessionFirstLesson()
+//        let session = SessionFirstLesson.instance
 //
 //        session.token = "mango123"
 //        session.userId = 290394

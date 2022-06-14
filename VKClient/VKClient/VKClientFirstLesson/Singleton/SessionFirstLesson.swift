@@ -9,6 +9,10 @@ import Foundation
 
 class SessionFirstLesson {
     
+    static let instance = SessionFirstLesson()
+    
+    private init() { }
+    
     var token: String = ""
     var userId: Int = 0
     
