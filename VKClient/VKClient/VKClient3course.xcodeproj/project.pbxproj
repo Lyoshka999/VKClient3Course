@@ -34,6 +34,8 @@
 		1FF021D1284E4B7A005C50A1 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF021D0284E4B7A005C50A1 /* News.swift */; };
 		1FF021D42853C9CF005C50A1 /* SessionFirstLesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF021D32853C9CF005C50A1 /* SessionFirstLesson.swift */; };
 		1FF021D62853CA9B005C50A1 /* SingletonFirstLessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF021D52853CA9B005C50A1 /* SingletonFirstLessonViewController.swift */; };
+		1FF021D8285A512B005C50A1 /* VKWebKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF021D7285A512B005C50A1 /* VKWebKitViewController.swift */; };
+		842E321C021C1894F19D41AD /* Pods_VKClientFirstLesson.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B3B7F364DBF150684DE2DC /* Pods_VKClientFirstLesson.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,10 @@
 		1FF021D0284E4B7A005C50A1 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		1FF021D32853C9CF005C50A1 /* SessionFirstLesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionFirstLesson.swift; sourceTree = "<group>"; };
 		1FF021D52853CA9B005C50A1 /* SingletonFirstLessonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingletonFirstLessonViewController.swift; sourceTree = "<group>"; };
+		1FF021D7285A512B005C50A1 /* VKWebKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKWebKitViewController.swift; sourceTree = "<group>"; };
+		6B1FAA78510908A8CD839B43 /* Pods-VKClientFirstLesson.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKClientFirstLesson.debug.xcconfig"; path = "Target Support Files/Pods-VKClientFirstLesson/Pods-VKClientFirstLesson.debug.xcconfig"; sourceTree = "<group>"; };
+		D3B3B7F364DBF150684DE2DC /* Pods_VKClientFirstLesson.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKClientFirstLesson.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F758E6FA470108A57C780D7B /* Pods-VKClientFirstLesson.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKClientFirstLesson.release.xcconfig"; path = "Target Support Files/Pods-VKClientFirstLesson/Pods-VKClientFirstLesson.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				842E321C021C1894F19D41AD /* Pods_VKClientFirstLesson.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +91,8 @@
 			children = (
 				1F4DFFB4282EFA8A00FAEFD3 /* VKClientFirstLesson */,
 				1F4DFFB3282EFA8A00FAEFD3 /* Products */,
+				6EB4072EA3593DA99BBA982B /* Pods */,
+				5C40B728F200354666B94B33 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,6 +134,7 @@
 				1F4DFFF42832F39E00FAEFD3 /* GallaryViewControllers+FlowLayout.swift */,
 				1FF021C8284BE31D005C50A1 /* FullScreenPhotosViewController.swift */,
 				1FF021CA284D2E05005C50A1 /* NewsViewController.swift */,
+				1FF021D7285A512B005C50A1 /* VKWebKitViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -170,6 +180,23 @@
 			path = Singleton;
 			sourceTree = "<group>";
 		};
+		5C40B728F200354666B94B33 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D3B3B7F364DBF150684DE2DC /* Pods_VKClientFirstLesson.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6EB4072EA3593DA99BBA982B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6B1FAA78510908A8CD839B43 /* Pods-VKClientFirstLesson.debug.xcconfig */,
+				F758E6FA470108A57C780D7B /* Pods-VKClientFirstLesson.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -177,9 +204,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1F4DFFC6282EFA8B00FAEFD3 /* Build configuration list for PBXNativeTarget "VKClientFirstLesson" */;
 			buildPhases = (
+				64557B2CB87D298666309306 /* [CP] Check Pods Manifest.lock */,
 				1F4DFFAE282EFA8A00FAEFD3 /* Sources */,
 				1F4DFFAF282EFA8A00FAEFD3 /* Frameworks */,
 				1F4DFFB0282EFA8A00FAEFD3 /* Resources */,
+				87A5506F5651549277DD78A3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -240,6 +269,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		64557B2CB87D298666309306 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VKClientFirstLesson-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		87A5506F5651549277DD78A3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VKClientFirstLesson/Pods-VKClientFirstLesson-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VKClientFirstLesson/Pods-VKClientFirstLesson-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VKClientFirstLesson/Pods-VKClientFirstLesson-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1F4DFFAE282EFA8A00FAEFD3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -257,6 +328,7 @@
 				1FF021D62853CA9B005C50A1 /* SingletonFirstLessonViewController.swift in Sources */,
 				1F4DFFF32832E89900FAEFD3 /* GallaryViewController.swift in Sources */,
 				1F1B25A228395E1A0052EE4F /* Extension.swift in Sources */,
+				1FF021D8285A512B005C50A1 /* VKWebKitViewController.swift in Sources */,
 				1F4DFFB8282EFA8A00FAEFD3 /* SceneDelegate.swift in Sources */,
 				1FF021D1284E4B7A005C50A1 /* News.swift in Sources */,
 				1F4DFFE12831901C00FAEFD3 /* Group.swift in Sources */,
@@ -408,6 +480,7 @@
 		};
 		1F4DFFC7282EFA8B00FAEFD3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B1FAA78510908A8CD839B43 /* Pods-VKClientFirstLesson.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -437,6 +510,7 @@
 		};
 		1F4DFFC8282EFA8B00FAEFD3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F758E6FA470108A57C780D7B /* Pods-VKClientFirstLesson.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
