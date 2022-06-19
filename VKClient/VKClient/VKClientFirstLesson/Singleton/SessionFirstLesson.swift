@@ -7,9 +7,9 @@
 
 import Foundation
 
-class SessionFirstLesson {
+class SessionMyApp {
     
-    static let instance = SessionFirstLesson()
+    static let instance = SessionMyApp()
     
     private init() { }
     

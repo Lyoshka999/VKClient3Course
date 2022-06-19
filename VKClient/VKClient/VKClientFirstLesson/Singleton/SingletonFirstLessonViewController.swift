@@ -7,12 +7,12 @@
 
 import UIKit
 
-class SingletonFirstLessonViewController: UIViewController {
+class SingletonMyAppViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let session = SessionFirstLesson.instance
+        let session = SessionMyApp.instance
 
         session.token = ""
         session.userId = 0

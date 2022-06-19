@@ -25,9 +25,7 @@ class VKWebKitViewController: UIViewController, WKNavigationDelegate {
         super.viewDidLoad()
         
         configureWebView()
-//        alamofireGetFriends()
-//        alamofireGetPhotos()
-//        alamofireGetGroups()
+
     }
 
     
@@ -75,10 +73,12 @@ class VKWebKitViewController: UIViewController, WKNavigationDelegate {
                 return dict
             }
         let token = params["access_token"]
-        SessionFirstLesson.instance.token = token ?? "no token"
-//        alamofireGetFriends()
+        SessionMyApp.instance.token = token ?? "no token"
         decisionHandler(.cancel)
+       
         alamofireGetFriends()
+        alamofireGetPhotos()
+        alamofireGetGroups()
     }
     
     
@@ -86,7 +86,7 @@ class VKWebKitViewController: UIViewController, WKNavigationDelegate {
     private func alamofireGetFriends() {
         
         AF.request(
-            "https://api.vk.com/method/friends.get?user_ids=8194844&fields=bdate&access_token=\(SessionFirstLesson.instance.token)=5.131"
+            "https://api.vk.com/method/friends.get?user_ids=8194844&fields=bdate&access_token=\(SessionMyApp.instance.token)&v=5.131"
         )
             .responseJSON { responce in
                 print(responce.value)
@@ -94,27 +94,27 @@ class VKWebKitViewController: UIViewController, WKNavigationDelegate {
             }
     }
     
-//    private func alamofireGetPhotos() {
-//
-//        AF.request(
-//            "https://api.vk.com/method/photos.get?user_ids=8194844&fields=bdate&access_token=vk1.a.bQLaYls-V6nensk-FFHJ89GtQHJydvBO3XQ5ck-qmUaqYq679yOZ01kCfTB-sMhmjpU8m8L5bka90zMG8VAU7wAMcnHEOstYyCDCwWZAKvKJ-E-UHhGGBnRXXD-4FEfGlZictExwbrrfaAFVHjq6Hozy1rrKMBUONf3DsVCY_RU5JUXXl8oIJiwyJR2f6ibj&v=5.131"
-//        )
-//            .responseJSON { responce in
-//                print(responce.value)
-//
-//            }
-//    }
-//
-//    private func alamofireGetGroups() {
-//
-//        AF.request(
-//            "https://api.vk.com/method/friends.get?user_ids=8194844&fields=bdate&access_token=access-token&v=5.81"
-//        )
-//            .responseJSON { responce in
-//                print(responce.value)
-//
-//            }
-//    }
-//
+    private func alamofireGetPhotos() {
+
+        AF.request(
+            "https://api.vk.com/method/photos.get?user_ids=8194844&fields=bdate&access_token=\(SessionMyApp.instance.token)&v=5.131"
+        )
+            .responseJSON { responce in
+                print(responce.value)
+
+            }
+    }
+
+    private func alamofireGetGroups() {
+
+        AF.request(
+            "https://api.vk.com/method/groups.get?user_ids=8194844&fields=bdate&access_token=\(SessionMyApp.instance.token)&v=5.131"
+        )
+            .responseJSON { responce in
+                print(responce.value)
+
+            }
+    }
+
     
 }
