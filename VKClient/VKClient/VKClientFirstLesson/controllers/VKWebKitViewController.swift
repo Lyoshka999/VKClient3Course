@@ -23,11 +23,11 @@ class VKWebKitViewController: UIViewController, WKNavigationDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureWebView()
-        alamofireGetFriends()
-        alamofireGetPhotos()
-        alamofireGetGroups()
+//        alamofireGetFriends()
+//        alamofireGetPhotos()
+//        alamofireGetGroups()
     }
 
     
@@ -43,7 +43,7 @@ class VKWebKitViewController: UIViewController, WKNavigationDelegate {
             URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
             URLQueryItem(name: "scope", value: "262150"),
             URLQueryItem(name: "response_type", value: "token"),
-            URLQueryItem(name: "v", value: "5.68")
+            URLQueryItem(name: "v", value: "5.131")
         ]
         let request = URLRequest(url: urlComponents.url!)
         webview.load(request)
@@ -75,8 +75,10 @@ class VKWebKitViewController: UIViewController, WKNavigationDelegate {
                 return dict
             }
         let token = params["access_token"]
-        print(token ?? "no token")
+        SessionFirstLesson.instance.token = token ?? "no token"
+//        alamofireGetFriends()
         decisionHandler(.cancel)
+        alamofireGetFriends()
     }
     
     
@@ -84,7 +86,7 @@ class VKWebKitViewController: UIViewController, WKNavigationDelegate {
     private func alamofireGetFriends() {
         
         AF.request(
-            "https://api.vk.com/method/friends.get?user_ids=8194844&fields=bdate&access_token=vk1.a.bQLaYls-V6nensk-FFHJ89GtQHJydvBO3XQ5ck-qmUaqYq679yOZ01kCfTB-sMhmjpU8m8L5bka90zMG8VAU7wAMcnHEOstYyCDCwWZAKvKJ-E-UHhGGBnRXXD-4FEfGlZictExwbrrfaAFVHjq6Hozy1rrKMBUONf3DsVCY_RU5JUXXl8oIJiwyJR2f6ibj&v=5.131"
+            "https://api.vk.com/method/friends.get?user_ids=8194844&fields=bdate&access_token=\(SessionFirstLesson.instance.token)=5.131"
         )
             .responseJSON { responce in
                 print(responce.value)
@@ -92,31 +94,27 @@ class VKWebKitViewController: UIViewController, WKNavigationDelegate {
             }
     }
     
-    private func alamofireGetPhotos() {
-        
-        AF.request(
-            "https://api.vk.com/method/photos.get?user_ids=8194844&fields=bdate&access_token=vk1.a.bQLaYls-V6nensk-FFHJ89GtQHJydvBO3XQ5ck-qmUaqYq679yOZ01kCfTB-sMhmjpU8m8L5bka90zMG8VAU7wAMcnHEOstYyCDCwWZAKvKJ-E-UHhGGBnRXXD-4FEfGlZictExwbrrfaAFVHjq6Hozy1rrKMBUONf3DsVCY_RU5JUXXl8oIJiwyJR2f6ibj&v=5.131"
-        )
-            .responseJSON { responce in
-                print(responce.value)
-                
-            }
-    }
-    
-    private func alamofireGetGroups() {
-        
-        AF.request(
-            "https://api.vk.com/method/groups.get?user_ids=8194844&fields=bdate&access_token=vk1.a.bQLaYls-V6nensk-FFHJ89GtQHJydvBO3XQ5ck-qmUaqYq679yOZ01kCfTB-sMhmjpU8m8L5bka90zMG8VAU7wAMcnHEOstYyCDCwWZAKvKJ-E-UHhGGBnRXXD-4FEfGlZictExwbrrfaAFVHjq6Hozy1rrKMBUONf3DsVCY_RU5JUXXl8oIJiwyJR2f6ibj&v=5.131"
-        )
-            .responseJSON { responce in
-                print(responce.value)
-                
-            }
-    }
-    
-    
-    
-    
-    
+//    private func alamofireGetPhotos() {
+//
+//        AF.request(
+//            "https://api.vk.com/method/photos.get?user_ids=8194844&fields=bdate&access_token=vk1.a.bQLaYls-V6nensk-FFHJ89GtQHJydvBO3XQ5ck-qmUaqYq679yOZ01kCfTB-sMhmjpU8m8L5bka90zMG8VAU7wAMcnHEOstYyCDCwWZAKvKJ-E-UHhGGBnRXXD-4FEfGlZictExwbrrfaAFVHjq6Hozy1rrKMBUONf3DsVCY_RU5JUXXl8oIJiwyJR2f6ibj&v=5.131"
+//        )
+//            .responseJSON { responce in
+//                print(responce.value)
+//
+//            }
+//    }
+//
+//    private func alamofireGetGroups() {
+//
+//        AF.request(
+//            "https://api.vk.com/method/friends.get?user_ids=8194844&fields=bdate&access_token=access-token&v=5.81"
+//        )
+//            .responseJSON { responce in
+//                print(responce.value)
+//
+//            }
+//    }
+//
     
 }

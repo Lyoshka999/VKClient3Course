@@ -7,16 +7,16 @@
 
 import UIKit
 
-//class SingletonFirstLessonViewController: UIViewController {
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        let session = SessionFirstLesson.instance
-//
-//        session.token = "mango123"
-//        session.userId = 290394
-//
-//    }
-//
-//}
+class SingletonFirstLessonViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        let session = SessionFirstLesson.instance
+
+        session.token = ""
+        session.userId = 0
+
+    }
+
+}
