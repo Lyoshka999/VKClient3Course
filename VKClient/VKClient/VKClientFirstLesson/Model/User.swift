@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import RealmSwift
 
-class User: DataJSON, Decodable {
+class User: Object , Decodable {
 
-    var userID: Int = 0
-    var name: String = ""
-    var lastName: String = ""
-    var userPhotoData: String = ""
+    @Persisted var userID: Int = 0
+    @Persisted var name: String = ""
+    @Persisted var lastName: String = ""
+    @Persisted var userPhotoData: String = ""
   //  var avatar: UIImage = #imageLiteral(resourceName: "16.-phill")
     
     enum CodingKeys: String, CodingKey {
