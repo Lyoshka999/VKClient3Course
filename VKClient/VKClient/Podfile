@@ -7,4 +7,7 @@ target 'VKClientFirstLesson' do
 
   # Pods for VKClientFirstLesson
   pod 'Alamofire'
+  pod 'SwiftyJSON'
+  pod 'Kingfisher'
+  
 end

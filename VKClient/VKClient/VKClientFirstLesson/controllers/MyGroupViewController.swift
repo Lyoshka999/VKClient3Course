@@ -17,6 +17,14 @@ class MyGroupViewController: UIViewController {
     
     var myGroupArray = [Group]()
     
+    var groupArray: [Group] = [] {
+        didSet {
+            tableViewMyGroup.reloadData()
+            print(groupArray)
+        }
+    }
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         tableViewMyGroup.reloadData()
@@ -29,17 +37,22 @@ class MyGroupViewController: UIViewController {
         tableViewMyGroup.register(UINib(nibName: "GeneralTableViewCell", bundle: nil), forCellReuseIdentifier: "reuseIdentifierGeneral")
         tableViewMyGroup.delegate = self
         tableViewMyGroup.dataSource = self
+        
+
+    ServiceVK().loadVKData(method: .groups) { [weak self] groupArray in
+        self?.groupArray = groupArray as? [Group] ?? []
+        print(groupArray.count)
     }
+}
     
     
     
     func addGroupInMyGroupExamination(group: Group) -> Bool {
         return myGroupArray.contains { sourceGroup in
-            sourceGroup.title == group.title
+            sourceGroup.name == group.name
             
         }
     }
-    
     
     
 
@@ -53,20 +66,16 @@ class MyGroupViewController: UIViewController {
             
         }
     }
-    
-    
-    
-    
 }
 
 extension MyGroupViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myGroupArray.count
+        return groupArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableViewMyGroup.dequeueReusableCell(withIdentifier: reuseIdentifierGeneral, for: indexPath) as? GeneralTableViewCell else { return UITableViewCell()}
-        cell.configure(group: myGroupArray[indexPath.row])
+        cell.configure(group: groupArray[indexPath.row])
         
         return cell
     }

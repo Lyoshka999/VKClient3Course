@@ -11,14 +11,19 @@ import Alamofire
 
 class VKWebKitViewController: UIViewController, WKNavigationDelegate {
 
-    
+    let session = SessionMyApp.instance
     @IBOutlet weak var webview: WKWebView! {
         didSet{
             webview.navigationDelegate = self
         }
     }
     
-    
+    var tokenString: String = "" {
+        didSet {
+            session.token = tokenString
+            performSegue(withIdentifier: "webViewToLoginScreenSegue", sender: nil)
+        }
+    }
     
     
     override func viewDidLoad() {
@@ -73,7 +78,8 @@ class VKWebKitViewController: UIViewController, WKNavigationDelegate {
                 return dict
             }
         let token = params["access_token"]
-        SessionMyApp.instance.token = token ?? "no token"
+        tokenString = token ?? "no token"
+      //  SessionMyApp.instance.token = token ?? "no token"
         decisionHandler(.cancel)
        
         alamofireGetFriends()
@@ -89,7 +95,7 @@ class VKWebKitViewController: UIViewController, WKNavigationDelegate {
             "https://api.vk.com/method/friends.get?user_ids=8194844&fields=bdate&access_token=\(SessionMyApp.instance.token)&v=5.131"
         )
             .responseJSON { responce in
-                print(responce.value)
+             //   print(responce.value)
                 
             }
     }
@@ -100,7 +106,7 @@ class VKWebKitViewController: UIViewController, WKNavigationDelegate {
             "https://api.vk.com/method/photos.get?user_ids=8194844&fields=bdate&access_token=\(SessionMyApp.instance.token)&v=5.131"
         )
             .responseJSON { responce in
-                print(responce.value)
+             //   print(responce.value)
 
             }
     }
@@ -111,7 +117,7 @@ class VKWebKitViewController: UIViewController, WKNavigationDelegate {
             "https://api.vk.com/method/groups.get?user_ids=8194844&fields=bdate&access_token=\(SessionMyApp.instance.token)&v=5.131"
         )
             .responseJSON { responce in
-                print(responce.value)
+             //   print(responce.value)
 
             }
     }

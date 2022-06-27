@@ -19,8 +19,12 @@ let fromFriendsToGallarySegue = "fromFriendsToGallary"
 let cellOfMyFriends: CGFloat = 100
 
 
-var friendsArray = [Friend]()
-var copyFriendsArray = [Friend]()
+    var friendsArray: [User] = [] {
+        didSet {
+            tableViewMyFriends.reloadData()
+        }
+    }
+var copyFriendsArray = [User]()
 
 
 /// Переменная индикатора закрузки
@@ -29,54 +33,85 @@ var copyFriendsArray = [Friend]()
 
 
 
-func fillFriendsArray() {
-    let friendOne = Friend(name: "Тор", avatar: UIImage(named: "Тор")!, photos: [UIImage(named: "ThorOne")!, UIImage(named: "ThorTwo")!, UIImage(named: "ThorThree")!])
-    let friendTwo = Friend(name: "Железный человек", avatar: UIImage(named: "Железный человек")!, photos: [UIImage(named: "IronManOne")!, UIImage(named: "IronManTwo")!, UIImage(named: "IronManThree")!])
-    let friendThree = Friend(name: "Халк", avatar: UIImage(named: "Халк")!, photos: [UIImage(named: "HulkOne")!, UIImage(named: "HulkTwo")!, UIImage(named: "HulkThree")!])
-    let friendFour = Friend(name: "Человек паук", avatar: UIImage(named: "Человек паук")!, photos: [UIImage(named: "SpiderManOne")!, UIImage(named: "SpiderManTwo")!])
-    friendsArray.append(friendOne)
-    friendsArray.append(friendTwo)
-    friendsArray.append(friendThree)
-    friendsArray.append(friendFour)
+//func fillFriendsArray() {
+//    let friendOne = Friend(name: "Тор", avatar: UIImage(named: "Тор")!, photos: [UIImage(named: "ThorOne")!, UIImage(named: "ThorTwo")!, UIImage(named: "ThorThree")!])
+//    let friendTwo = Friend(name: "Железный человек", avatar: UIImage(named: "Железный человек")!, photos: [UIImage(named: "IronManOne")!, UIImage(named: "IronManTwo")!, UIImage(named: "IronManThree")!])
+//    let friendThree = Friend(name: "Халк", avatar: UIImage(named: "Халк")!, photos: [UIImage(named: "HulkOne")!, UIImage(named: "HulkTwo")!, UIImage(named: "HulkThree")!])
+//    let friendFour = Friend(name: "Человек паук", avatar: UIImage(named: "Человек паук")!, photos: [UIImage(named: "SpiderManOne")!, UIImage(named: "SpiderManTwo")!])
+//    friendsArray.append(friendOne)
+//    friendsArray.append(friendTwo)
+//    friendsArray.append(friendThree)
+//    friendsArray.append(friendFour)
     
-}
+//}
 
-func arrayLetter(sourceArray: [Friend]) -> [String] {
-    var resultArray = [String]()
-    for item in sourceArray {
-        let nameLetter = String(item.name.prefix(1))
-        if !resultArray.contains(nameLetter.lowercased()) {
-            resultArray.append(nameLetter.lowercased())
+//func arrayLetter(sourceArray: [Friend]) -> [String] {
+//    var resultArray = [String]()
+//    for item in sourceArray {
+//        let nameLetter = String(item.name.prefix(1))
+//        if !resultArray.contains(nameLetter.lowercased()) {
+//            resultArray.append(nameLetter.lowercased())
+//    }
+//
+//}
+//    return resultArray.sorted { firstItem, secondItem in
+//        firstItem < secondItem
+//    }
+//}
+
+    
+    func arrayLetter(sourceArray: [User]) -> [String] {
+        var resultArray = [String]()
+        for item in sourceArray {
+            let nameLetter = String(item.name.prefix(1))
+            if !resultArray.contains(nameLetter.lowercased()) {
+                resultArray.append(nameLetter.lowercased())
+        }
+            
     }
-        
-}
-    return resultArray.sorted { firstItem, secondItem in
-        firstItem < secondItem
-    }
-}
-
-
-func arrayByLetter(sourceArray: [Friend], letter: String) -> [Friend] {
-    var resultArray = [Friend]()
-    for item in sourceArray {
-        let nameLetter = String(item.name.prefix(1)).lowercased()
-        if nameLetter == letter.lowercased() {
-            resultArray.append(item)
+        return resultArray.sorted { firstItem, secondItem in
+            firstItem < secondItem
         }
     }
-    return resultArray
-}
 
+//func arrayByLetter(sourceArray: [Friend], letter: String) -> [Friend] {
+//    var resultArray = [Friend]()
+//    for item in sourceArray {
+//        let nameLetter = String(item.name.prefix(1)).lowercased()
+//        if nameLetter == letter.lowercased() {
+//            resultArray.append(item)
+//        }
+//    }
+//    return resultArray
+//}
 
+    func arrayByLetter(sourceArray: [User], letter: String) -> [User] {
+        var resultArray = [User]()
+        for item in sourceArray {
+            let nameLetter = String(item.name.prefix(1)).lowercased()
+            if nameLetter == letter.lowercased() {
+                resultArray.append(item)
+            }
+        }
+        return resultArray
+    }
+    
+    
 override func viewDidLoad() {
     super.viewDidLoad()
-    fillFriendsArray()
-    copyFriendsArray = friendsArray
+//    fillFriendsArray()
+//    copyFriendsArray = friendsArray
     tableViewMyFriends.register(UINib(nibName: "GeneralTableViewCell", bundle: nil), forCellReuseIdentifier: "reuseIdentifierGeneral")
     tableViewMyFriends.delegate = self
     tableViewMyFriends.dataSource = self
     searchBar.delegate = self
     self.setupHideKeyboardOnTap()
+    
+    
+    ServiceVK().loadVKData(method: .users) { [weak self] friendsArray in
+        self?.friendsArray = friendsArray as? [User] ?? []
+        print(friendsArray.count)
+    }
 }
 
 
@@ -85,8 +120,8 @@ override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == fromFriendsToGallarySegue,
 //           let sourceVC = segue.source as? MyFriendsViewController,
        let destinationVC = segue.destination as? GallaryViewController,
-       let friend = sender as? Friend {
-        destinationVC.photos = friend.photos
+       let friend = sender as? User {
+//        destinationVC.photos = Users.photos
     }
     
 /// Indicator loading
@@ -98,10 +133,8 @@ override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        activityIndicator.startAnimating()
 }
 
-
-
-
 }
+
 
 extension MyFriendsViewController: UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 

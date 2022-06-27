@@ -21,12 +21,12 @@ class AllGroupsViewController: UIViewController {
     var allGroupArray = [Group]()
     
     func fillMyGroups() {
-        let sportCars = Group(title: "Sport Cars", avatar: UIImage(named: "SportCarOne")!)
-        let cats = Group(title: "Cats", avatar: UIImage(named: "Cats")!)
-        let flowers = Group(title: "Flowers", avatar: UIImage(named: "Flowers")!)
-        allGroupArray.append(sportCars)
-        allGroupArray.append(cats)
-        allGroupArray.append(flowers)
+//        let sportCars = Group(title: "Sport Cars", avatar: UIImage(named: "SportCarOne")!)
+//        let cats = Group(title: "Cats", avatar: UIImage(named: "Cats")!)
+//        let flowers = Group(title: "Flowers", avatar: UIImage(named: "Flowers")!)
+//        allGroupArray.append(sportCars)
+//        allGroupArray.append(cats)
+//        allGroupArray.append(flowers)
     }
     
     

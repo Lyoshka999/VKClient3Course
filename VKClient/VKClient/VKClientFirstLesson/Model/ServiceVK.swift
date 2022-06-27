@@ -1,0 +1,118 @@
+//
+//  ServiceVK.swift
+//  VKClientFirstLesson
+//
+//  Created by Алексей on 25.06.2022.
+//
+
+import Foundation
+import Alamofire
+
+class ServiceVK {
+    
+    let session = SessionMyApp.instance
+    
+    let baseUrl = "https://api.vk.com"
+    
+    enum MethodsRequest: String {
+
+        case users = "/method/friends.get"
+        case photos = "/method/photos.getAll"
+        case groups = "/method/groups.get"
+        
+        var parameters: [String: String] {
+            switch self {
+            case .users:
+                return [
+                    "access_token": SessionMyApp.instance.token,
+                    "v": "5.131",
+                    "fields": "photo_100",
+                    "extended": "1",
+                ]
+            case .photos:
+                return [
+                    "access_token": SessionMyApp.instance.token,
+                    "v": "5.131",
+                    "type": "s"
+                ]
+            case .groups:
+                return [
+                    "access_token": SessionMyApp.instance.token,
+                    "v": "5.131",
+                    "fields": "photo_100",
+                    "extended": "1"
+                ]
+            }
+        }
+        
+    }
+
+    func loadVKData(method: MethodsRequest, completion: @escaping ([DataJSON]) -> Void ) {
+        let path = method.rawValue
+        let parameters: Parameters = method.parameters
+        let url = baseUrl + path
+        print(url)
+        print(session.token, session.userId)
+        
+        AF.request(url, method: .get, parameters: parameters).responseData { response in
+            guard let data = response.value else {
+                print("no data")
+                completion([])
+                return }
+            
+            switch method {
+            case .users:
+                let items = try! JSONDecoder().decode(Users.self, from: data).items
+                completion(items)
+                return
+            case .photos:
+                let items = try! JSONDecoder().decode(Photos.self, from: data).items
+                completion(items)
+            case .groups:
+                let items = try! JSONDecoder().decode(Groups.self, from: data).items
+                completion(items)
+                return
+            }
+        }
+    }
+    
+    func loadVKData(method: MethodsRequest, searchText: String, completion: @escaping ([DataJSON]) -> Void ) {
+        let path = method.rawValue
+        
+        var parameters: Parameters = method.parameters
+        parameters["q"] = searchText
+        let url = baseUrl + path
+        print(url)
+        print(session.token, session.userId)
+        
+        AF.request(url, method: .get, parameters: parameters).responseData { response in
+            switch response.result {
+            case .success(let data):
+                do {
+                    let fromJSON = try JSONSerialization.jsonObject(with: data)
+                  //  print(fromJSON)
+                } catch {
+                    print("Decoding error from data: \(data)")
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+   
+    func autorisationVK() -> URLRequest {
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "https"
+        urlComponents.host = "oauth.vk.com"
+        urlComponents.path = "/authorize"
+        urlComponents.queryItems = [
+            URLQueryItem(name: "client_id", value: "8194844"),
+            URLQueryItem(name: "display", value: "mobile"),
+            URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
+            URLQueryItem(name: "scope", value: "262150"),
+            URLQueryItem(name: "response_type", value: "token"),
+            URLQueryItem(name: "v", value: "5.131") ]
+        let request = URLRequest(url: urlComponents.url!)
+        return request
+    }
+}
