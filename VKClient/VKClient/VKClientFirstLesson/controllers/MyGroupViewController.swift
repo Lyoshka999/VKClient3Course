@@ -25,7 +25,7 @@ class MyGroupViewController: UIViewController {
         }
     }
     
-    var groupData: Results<Group>?
+    var groupResults: Results<Group>?
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -52,8 +52,8 @@ class MyGroupViewController: UIViewController {
         do {
            let realm = try Realm()
             print(realm.configuration.fileURL)
-            groupData = realm.objects(Group.self)
-            if let groupData = groupData {
+            groupResults = realm.objects(Group.self)
+            if let groupData = groupResults {
                 groupArray = Array(groupData)
             }
             print(groupArray)

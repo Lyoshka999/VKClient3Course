@@ -26,7 +26,7 @@ let cellOfMyFriends: CGFloat = 100
         }
     }
 var copyFriendsArray = [User]()
-    var friendsData: Results<User>?
+var friendsResults: Results<User>?
 
 
 /// Переменная индикатора закрузки
@@ -120,8 +120,8 @@ override func viewDidLoad() {
         do {
            let realm = try Realm()
            // print(realm.configuration.fileURL)
-            friendsData = realm.objects(User.self)
-            if let friendsData = friendsData {
+            friendsResults = realm.objects(User.self)
+            if let friendsData = friendsResults {
                 friendsArray = Array(friendsData)
                // print(friendsData)
             }

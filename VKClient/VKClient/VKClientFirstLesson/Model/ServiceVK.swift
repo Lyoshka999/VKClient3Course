@@ -118,7 +118,7 @@ class ServiceVK {
             configuration.deleteRealmIfMigrationNeeded = true
             let realm = try Realm()
             try realm.write({
-                realm.add(groups)
+                realm.add(groups, update: .all)
             })
         } catch {
             print(error)
