@@ -26,6 +26,8 @@
 		1F4DFFF52832F39E00FAEFD3 /* GallaryViewControllers+FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4DFFF42832F39E00FAEFD3 /* GallaryViewControllers+FlowLayout.swift */; };
 		1F4DFFF82838497700FAEFD3 /* LikeCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4DFFF72838497700FAEFD3 /* LikeCountView.swift */; };
 		1F4DFFFA2838498F00FAEFD3 /* LikeCountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F4DFFF92838498F00FAEFD3 /* LikeCountView.xib */; };
+		1FB0806A286DFFA600ECC533 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB08069286DFFA600ECC533 /* UserResponse.swift */; };
+		1FB0806D286E024A00ECC533 /* GroupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB0806C286E024A00ECC533 /* GroupResponse.swift */; };
 		1FD064B628665EFC00BABB92 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD064B528665EFC00BABB92 /* Photo.swift */; };
 		1FD064B828665F5500BABB92 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD064B728665F5500BABB92 /* User.swift */; };
 		1FD064BA2866600600BABB92 /* RequestDataVKJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD064B92866600600BABB92 /* RequestDataVKJSON.swift */; };
@@ -68,6 +70,8 @@
 		1F4DFFF42832F39E00FAEFD3 /* GallaryViewControllers+FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GallaryViewControllers+FlowLayout.swift"; sourceTree = "<group>"; };
 		1F4DFFF72838497700FAEFD3 /* LikeCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeCountView.swift; sourceTree = "<group>"; };
 		1F4DFFF92838498F00FAEFD3 /* LikeCountView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikeCountView.xib; sourceTree = "<group>"; };
+		1FB08069286DFFA600ECC533 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
+		1FB0806C286E024A00ECC533 /* GroupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupResponse.swift; sourceTree = "<group>"; };
 		1FD064B528665EFC00BABB92 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		1FD064B728665F5500BABB92 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1FD064B92866600600BABB92 /* RequestDataVKJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDataVKJSON.swift; sourceTree = "<group>"; };
@@ -174,11 +178,13 @@
 				1F4DFFDE2831900700FAEFD3 /* Friend.swift */,
 				1FF021D0284E4B7A005C50A1 /* News.swift */,
 				1FD064B92866600600BABB92 /* RequestDataVKJSON.swift */,
+				1FB0806C286E024A00ECC533 /* GroupResponse.swift */,
 				1FD064BB286662B000BABB92 /* Groups.swift */,
 				1F4DFFE02831901C00FAEFD3 /* Group.swift */,
 				1FD064C02866646000BABB92 /* PhotosSizes.swift */,
 				1FD064BE286663C200BABB92 /* Photos.swift */,
 				1FD064B528665EFC00BABB92 /* Photo.swift */,
+				1FB08069286DFFA600ECC533 /* UserResponse.swift */,
 				1FD064C22866648400BABB92 /* Users.swift */,
 				1FD064B728665F5500BABB92 /* User.swift */,
 				1FD064C428666E2E00BABB92 /* ServiceVK.swift */,
@@ -340,11 +346,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FB0806D286E024A00ECC533 /* GroupResponse.swift in Sources */,
 				1F4DFFE928319EB100FAEFD3 /* MyGroupViewController.swift in Sources */,
 				1F4DFFF52832F39E00FAEFD3 /* GallaryViewControllers+FlowLayout.swift in Sources */,
 				1F4DFFF02832E6AA00FAEFD3 /* GallaryCollectionViewCell.swift in Sources */,
 				1FD064C528666E2E00BABB92 /* ServiceVK.swift in Sources */,
 				1F4DFFF82838497700FAEFD3 /* LikeCountView.swift in Sources */,
+				1FB0806A286DFFA600ECC533 /* UserResponse.swift in Sources */,
 				1FF021C9284BE31D005C50A1 /* FullScreenPhotosViewController.swift in Sources */,
 				1F4DFFCA282EFC2D00FAEFD3 /* LoginPageViewController.swift in Sources */,
 				1F4DFFB6282EFA8A00FAEFD3 /* AppDelegate.swift in Sources */,

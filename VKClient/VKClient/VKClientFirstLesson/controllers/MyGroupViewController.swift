@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MyGroupViewController: UIViewController {
 
+    let serviceVK = ServiceVK()
     let reuseIdentifierGeneral = "reuseIdentifierGeneral"
     let cellOfMyGroups: CGFloat = 100
     let fromAllGroupsToMyGroups = "fromAllGroupsToMyGroups"
@@ -20,10 +22,10 @@ class MyGroupViewController: UIViewController {
     var groupArray: [Group] = [] {
         didSet {
             tableViewMyGroup.reloadData()
-            print(groupArray)
         }
     }
     
+    var groupData: Results<Group>?
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -38,13 +40,27 @@ class MyGroupViewController: UIViewController {
         tableViewMyGroup.delegate = self
         tableViewMyGroup.dataSource = self
         
-
-    ServiceVK().loadVKData(method: .groups) { [weak self] groupArray in
-        self?.groupArray = groupArray as? [Group] ?? []
-        print(groupArray.count)
-    }
+        serviceVK.loadGroupsData(method: .groups) { [weak self] groupArray in
+//            self?.groupArray = groupArray
+            self?.getGroupsFromRealm()
+        }
 }
     
+    
+    
+    private func getGroupsFromRealm() {
+        do {
+           let realm = try Realm()
+            print(realm.configuration.fileURL)
+            groupData = realm.objects(Group.self)
+            if let groupData = groupData {
+                groupArray = Array(groupData)
+            }
+            print(groupArray)
+        } catch {
+            print(error)
+        }
+    }
     
     
     func addGroupInMyGroupExamination(group: Group) -> Bool {

@@ -7,17 +7,18 @@
 
 import Foundation
 import UIKit
+//import RealmSwift
 
-class Photo: DataJSON, Decodable {
+class Photo: Decodable {
 
-    var description: String = ""
+    var photoDescription: String = ""
     var type: String = ""
     var url: String = ""
     var photo: UIImage = #imageLiteral(resourceName: "groups")
     
     enum CodingKeys: String, CodingKey {
         case sizes
-        case description = "text"
+        case photoDescription = "text"
     }
     enum SizesCodingKeys: String, CodingKey {
         case type
@@ -29,7 +30,7 @@ class Photo: DataJSON, Decodable {
         self.init()
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.description = try container.decode(String.self, forKey: .description)
+        self.photoDescription = try container.decode(String.self, forKey: .photoDescription)
         
         var sizeContainer = try container.nestedUnkeyedContainer(forKey: .sizes)
 
