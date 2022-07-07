@@ -15,7 +15,7 @@ class SingletonMyAppViewController: UIViewController {
         let session = SessionMyApp.instance
 
         session.token = ""
-        session.userId = 0
+        session.userId = ""
 
     }
 

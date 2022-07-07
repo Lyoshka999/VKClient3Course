@@ -28,6 +28,8 @@
 		1F4DFFFA2838498F00FAEFD3 /* LikeCountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F4DFFF92838498F00FAEFD3 /* LikeCountView.xib */; };
 		1FB0806A286DFFA600ECC533 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB08069286DFFA600ECC533 /* UserResponse.swift */; };
 		1FB0806D286E024A00ECC533 /* GroupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB0806C286E024A00ECC533 /* GroupResponse.swift */; };
+		1FB0806F287465B800ECC533 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1FB0806E287465B800ECC533 /* GoogleService-Info.plist */; };
+		1FB080752877292500ECC533 /* GroupsToFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB080742877292500ECC533 /* GroupsToFirebase.swift */; };
 		1FD064B628665EFC00BABB92 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD064B528665EFC00BABB92 /* Photo.swift */; };
 		1FD064B828665F5500BABB92 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD064B728665F5500BABB92 /* User.swift */; };
 		1FD064BA2866600600BABB92 /* RequestDataVKJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD064B92866600600BABB92 /* RequestDataVKJSON.swift */; };
@@ -72,6 +74,8 @@
 		1F4DFFF92838498F00FAEFD3 /* LikeCountView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikeCountView.xib; sourceTree = "<group>"; };
 		1FB08069286DFFA600ECC533 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		1FB0806C286E024A00ECC533 /* GroupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupResponse.swift; sourceTree = "<group>"; };
+		1FB0806E287465B800ECC533 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1FB080742877292500ECC533 /* GroupsToFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsToFirebase.swift; sourceTree = "<group>"; };
 		1FD064B528665EFC00BABB92 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		1FD064B728665F5500BABB92 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1FD064B92866600600BABB92 /* RequestDataVKJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDataVKJSON.swift; sourceTree = "<group>"; };
@@ -127,6 +131,7 @@
 		1F4DFFB4282EFA8A00FAEFD3 /* VKClientFirstLesson */ = {
 			isa = PBXGroup;
 			children = (
+				1FB0806E287465B800ECC533 /* GoogleService-Info.plist */,
 				1FF021D22853C8F6005C50A1 /* Singleton */,
 				1F4DFFF62838492B00FAEFD3 /* likeView */,
 				1F4DFFDD28318FD600FAEFD3 /* Model */,
@@ -188,6 +193,7 @@
 				1FD064C22866648400BABB92 /* Users.swift */,
 				1FD064B728665F5500BABB92 /* User.swift */,
 				1FD064C428666E2E00BABB92 /* ServiceVK.swift */,
+				1FB080742877292500ECC533 /* GroupsToFirebase.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -288,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FF021C1283EC880005C50A1 /* GeneralTableViewCell.xib in Resources */,
+				1FB0806F287465B800ECC533 /* GoogleService-Info.plist in Resources */,
 				1F4DFFC2282EFA8B00FAEFD3 /* LaunchScreen.storyboard in Resources */,
 				1F4DFFF12832E6AA00FAEFD3 /* GallaryCollectionViewCell.xib in Resources */,
 				1FF021CF284D2FE2005C50A1 /* NewsTableViewCell.xib in Resources */,
@@ -360,6 +367,7 @@
 				1FD064BA2866600600BABB92 /* RequestDataVKJSON.swift in Sources */,
 				1F4DFFED2831A32500FAEFD3 /* AllGroupsViewController.swift in Sources */,
 				1FF021D62853CA9B005C50A1 /* SingletonFirstLessonViewController.swift in Sources */,
+				1FB080752877292500ECC533 /* GroupsToFirebase.swift in Sources */,
 				1F4DFFF32832E89900FAEFD3 /* GallaryViewController.swift in Sources */,
 				1F1B25A228395E1A0052EE4F /* Extension.swift in Sources */,
 				1FD064BC286662B000BABB92 /* Groups.swift in Sources */,
