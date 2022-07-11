@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MyFriendsViewController: UIViewController {
 
@@ -13,7 +14,7 @@ class MyFriendsViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
-
+let serviceVK = ServiceVK()
 let reuseIdentifierGeneral = "reuseIdentifierGeneral"
 let fromFriendsToGallarySegue = "fromFriendsToGallary"
 let cellOfMyFriends: CGFloat = 100
@@ -25,6 +26,7 @@ let cellOfMyFriends: CGFloat = 100
         }
     }
 var copyFriendsArray = [User]()
+var friendsResults: Results<User>?
 
 
 /// Переменная индикатора закрузки
@@ -106,14 +108,27 @@ override func viewDidLoad() {
     tableViewMyFriends.dataSource = self
     searchBar.delegate = self
     self.setupHideKeyboardOnTap()
+
     
-    
-    ServiceVK().loadVKData(method: .users) { [weak self] friendsArray in
-        self?.friendsArray = friendsArray as? [User] ?? []
-        print(friendsArray.count)
+    serviceVK.loadFriendsData(method: .users) { [weak self] in
+       // self?.friendsArray = friendsArray
+        self?.getFriendsFromRealm()
     }
 }
 
+    private func getFriendsFromRealm() {
+        do {
+           let realm = try Realm()
+           // print(realm.configuration.fileURL)
+            friendsResults = realm.objects(User.self)
+            if let friendsData = friendsResults {
+                friendsArray = Array(friendsData)
+               // print(friendsData)
+            }
+        } catch {
+            print(error)
+        }
+    }
 
 
 override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

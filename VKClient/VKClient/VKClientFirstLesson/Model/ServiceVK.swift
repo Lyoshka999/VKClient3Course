@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import RealmSwift
 
 class ServiceVK {
     
@@ -47,34 +48,83 @@ class ServiceVK {
         
     }
 
-    func loadVKData(method: MethodsRequest, completion: @escaping ([DataJSON]) -> Void ) {
+    
+    func loadFriendsData(method: MethodsRequest, completion: @escaping () -> Void) {
         let path = method.rawValue
-        let parameters: Parameters = method.parameters
-        let url = baseUrl + path
-        print(url)
-        print(session.token, session.userId)
+                let parameters: Parameters = method.parameters
+                let url = baseUrl + path
         
-        AF.request(url, method: .get, parameters: parameters).responseData { response in
-            guard let data = response.value else {
-                print("no data")
-                completion([])
-                return }
-            
-            switch method {
-            case .users:
-                let items = try! JSONDecoder().decode(Users.self, from: data).items
-                completion(items)
-                return
-            case .photos:
-                let items = try! JSONDecoder().decode(Photos.self, from: data).items
-                completion(items)
-            case .groups:
-                let items = try! JSONDecoder().decode(Groups.self, from: data).items
-                completion(items)
-                return
+        AF.request(url, method: .get, parameters: parameters).responseData { [weak self] response in
+            switch response.result {
+            case .success(let data):
+                do {
+                    let friends = try JSONDecoder().decode(Users.self, from: data).items
+                    self?.saveToRealmFriends(friends)
+                    completion()
+                } catch {
+                    print("Failed to decode")
+                }
+            case .failure(let error):
+                print(error)
             }
         }
     }
+    
+    
+    private func saveToRealmFriends(_ friends: [User]) {
+
+        do {
+           // var configuration = Realm.Configuration.defaultConfiguration
+           // configuration.deleteRealmIfMigrationNeeded = true
+            let realm = try Realm()
+          //  print(realm.configuration.fileURL)
+            try realm.write {
+                let oldFriends = realm.objects(User.self)
+                realm.delete(oldFriends)
+                realm.add(friends, update: .all)
+            }
+        } catch {
+            print(error)
+        }
+    }
+     
+    
+    
+    
+    func loadGroupsData(method: MethodsRequest, completion: @escaping ([Group]) -> Void) {
+        let path = method.rawValue
+                let parameters: Parameters = method.parameters
+                let url = baseUrl + path
+        
+        AF.request(url, method: .get, parameters: parameters).responseData { [weak self] response in
+            switch response.result {
+            case .success(let data):
+                do {
+                    let groups = try JSONDecoder().decode(Groups.self, from: data).items
+                    self?.saveToRealmGroups(groups)
+                    completion(groups)
+                } catch {
+                    print("Failed to decode")
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func saveToRealmGroups(_ groups: [Group]) {
+        do {
+            var configuration = Realm.Configuration.defaultConfiguration
+            configuration.deleteRealmIfMigrationNeeded = true
+            let realm = try Realm()
+            try realm.write({
+                realm.add(groups, update: .all)
+            })
+        } catch {
+            print(error)
+        }
+    }
+
     
     func loadVKData(method: MethodsRequest, searchText: String, completion: @escaping ([DataJSON]) -> Void ) {
         let path = method.rawValue

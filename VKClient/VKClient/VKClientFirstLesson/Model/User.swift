@@ -8,13 +8,18 @@
 import UIKit
 import RealmSwift
 
-class User: Object , Decodable {
+class User: Object, Decodable {
 
     @Persisted var userID: Int = 0
     @Persisted var name: String = ""
     @Persisted var lastName: String = ""
     @Persisted var userPhotoData: String = ""
   //  var avatar: UIImage = #imageLiteral(resourceName: "16.-phill")
+    
+    override class func primaryKey() -> String? {
+        return "userID"
+    }
+     
     
     enum CodingKeys: String, CodingKey {
         case userID = "id"

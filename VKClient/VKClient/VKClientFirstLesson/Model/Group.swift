@@ -12,11 +12,16 @@ import RealmSwift
 //    var avatar = UIImage()
 //}
 
-class Group: Decodable, Object {
+class Group: Object, Decodable {
     
   @Persisted var name: String = ""
   @Persisted var groupPhotoData: String = ""
-//    var avatarGroup: UIImage = #imageLiteral(resourceName: "groups")
+//  @Persisted var avatarGroup: UIImage = #imageLiteral(resourceName: "groups")
+   
+    override class func primaryKey() -> String? {
+        return "groupPhotoData"
+    }
+    
     
     enum CodingKeys: String, CodingKey {
         case name
