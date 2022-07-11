@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 protocol GeneralTableCellProtocol: AnyObject {
     func generalTableLikeCountIncrement(counter: Int)
@@ -27,19 +28,34 @@ class GeneralTableViewCell: UITableViewCell {
     
     
     override func prepareForReuse() {
+        avatarImageView.kf.cancelDownloadTask()
         avatarImageView.image = nil
         titleLabel.text = nil
     }
     
     
-    func configure(friend: Friend) {
-        avatarImageView.image = friend.avatar
+//    func configure(friend: Friend) {
+//        avatarImageView.image = friend.avatar
+//        titleLabel.text = friend.name
+//    }
+    
+    func configure(friend: User) {
+      //  avatarImageView.image = friend.avatar
+      //  avatarImageView.image = #imageLiteral(resourceName: "Котик2")
         titleLabel.text = friend.name
+        
+        if let url = URL(string: friend.userPhotoData) {
+            avatarImageView.kf.setImage(with: url)
+        }
     }
     
     func configure(group: Group) {
-        avatarImageView.image = group.avatar
-        titleLabel.text = group.title
+//        avatarImageView.image = group.groupPhotoData
+        titleLabel.text = group.name
+        
+        if let url = URL(string: group.groupPhotoData) {
+            avatarImageView.kf.setImage(with: url)
+        }
     }
     
     override func awakeFromNib() {

@@ -7,8 +7,8 @@
 
 import UIKit
 
-struct Friend {
-    var name = String()
-    var avatar = UIImage()
-    var photos = [UIImage]()
-}
+//struct Friend {
+//    var name = String()
+//    var avatar = UIImage()
+//    var photos = [UIImage]()
+//}
