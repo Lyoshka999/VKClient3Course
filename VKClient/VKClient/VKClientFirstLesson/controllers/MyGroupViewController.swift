@@ -15,6 +15,9 @@ class MyGroupViewController: UIViewController {
     let cellOfMyGroups: CGFloat = 100
     let fromAllGroupsToMyGroups = "fromAllGroupsToMyGroups"
     
+    private var notificationTokenGroups: NotificationToken?
+    
+    
     @IBOutlet weak var tableViewMyGroup: UITableView!
     
     var myGroupArray = [Group]()
@@ -26,6 +29,10 @@ class MyGroupViewController: UIViewController {
     }
     
     var groupResults: Results<Group>?
+    
+    deinit {
+        notificationTokenGroups?.invalidate()
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -51,12 +58,26 @@ class MyGroupViewController: UIViewController {
     private func getGroupsFromRealm() {
         do {
            let realm = try Realm()
-            print(realm.configuration.fileURL)
+//            print(realm.configuration.fileURL)
             groupResults = realm.objects(Group.self)
             if let groupData = groupResults {
                 groupArray = Array(groupData)
+                notificationTokenGroups = groupResults?.observe { [weak self] change in
+                    switch change {
+                    case .initial:
+                        self?.tableViewMyGroup.reloadData()
+                    case .update( _, let deletions, let insertions, let modifications):
+                        self?.tableViewMyGroup.beginUpdates()
+                        self?.tableViewMyGroup.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0) }), with: .automatic)
+                        self?.tableViewMyGroup.insertRows(at: deletions.map({ IndexPath(row: $0, section: 0) }), with: .automatic)
+                        self?.tableViewMyGroup.reloadRows(at: deletions.map({ IndexPath(row: $0, section: 0) }), with: .automatic)
+                        self?.tableViewMyGroup.endUpdates()
+                     case .error:
+                        break
+                    }
+                }
             }
-            print(groupArray)
+
         } catch {
             print(error)
         }

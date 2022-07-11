@@ -19,6 +19,8 @@ let reuseIdentifierGeneral = "reuseIdentifierGeneral"
 let fromFriendsToGallarySegue = "fromFriendsToGallary"
 let cellOfMyFriends: CGFloat = 100
 
+    
+    private var notificationTokenFriends: NotificationToken?
 
     var friendsArray: [User] = [] {
         didSet {
@@ -28,6 +30,9 @@ let cellOfMyFriends: CGFloat = 100
 var copyFriendsArray = [User]()
 var friendsResults: Results<User>?
 
+    deinit {
+        notificationTokenFriends?.invalidate()
+    }
 
 /// Переменная индикатора закрузки
 //    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
@@ -124,13 +129,25 @@ override func viewDidLoad() {
             if let friendsData = friendsResults {
                 friendsArray = Array(friendsData)
                // print(friendsData)
+                notificationTokenFriends = friendsResults?.observe { [weak self] change in
+                    switch change {
+                    case .initial:
+                        self?.tableViewMyFriends.reloadData()
+                    case .update( _, let deletions, let insertions, let modifications):
+                        self?.tableViewMyFriends.beginUpdates()
+                        self?.tableViewMyFriends.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0) }), with: .automatic)
+                        self?.tableViewMyFriends.insertRows(at: deletions.map({ IndexPath(row: $0, section: 0) }), with: .automatic)
+                        self?.tableViewMyFriends.reloadRows(at: deletions.map({ IndexPath(row: $0, section: 0) }), with: .automatic)
+                        self?.tableViewMyFriends.endUpdates()
+                     case .error:
+                        break
+                    }
+                }
             }
         } catch {
             print(error)
         }
     }
-
-
 override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == fromFriendsToGallarySegue,
 //           let sourceVC = segue.source as? MyFriendsViewController,
