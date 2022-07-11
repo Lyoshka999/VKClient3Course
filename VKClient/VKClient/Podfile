@@ -10,5 +10,9 @@ target 'VKClientFirstLesson' do
   pod 'SwiftyJSON'
   pod 'Kingfisher'
   pod 'RealmSwift'
+  pod 'FirebaseCore'
+  pod 'FirebaseDatabase'
+  pod 'FirebaseAuth'
+  pod 'FirebaseAnalytics'
   
 end

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginPageViewController: UIViewController {
 
@@ -33,6 +34,8 @@ class LoginPageViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        loginTextField.text = "test@test.com"
+        passwordTextField.text = "11111111"
         
         firstIndicator.alpha = 0
         secondIndicator.alpha = 0
@@ -105,29 +108,57 @@ class LoginPageViewController: UIViewController {
     
     @IBAction func loginButtonPress(_ sender: UIButton) {
         
+        performAuth(email: loginTextField.text, password: passwordTextField.text) { [weak self] isCompleted in
+            guard isCompleted else { return }
+            DispatchQueue.main.async {
+                self?.performSegue(withIdentifier: "loginButton", sender: nil)
+            }
+        }
+        }
         
-        guard let login = loginTextField.text,
-              let password = passwordTextField.text
-        else { return }
-        
-        if login == "admin",
-           password == "1111" {
-            loginTextField.backgroundColor = UIColor.green
-            passwordTextField.backgroundColor = UIColor.green
-            performSegue(withIdentifier: "loginButton", sender: nil)
+        private func performAuth(email: String?, password: String?, completion: @escaping (Bool) -> Void) {
             
-        } else if login == "",
-                  password == "" {
-            loginTextField.backgroundColor = UIColor.green
-            passwordTextField.backgroundColor = UIColor.green
-            performSegue(withIdentifier: "loginButton", sender: nil)
+            guard let email = email,
+                  !email.isEmpty,
+                  let password = password,
+                  !password.isEmpty
+            else {
+                loginTextField.backgroundColor = UIColor.red
+                passwordTextField.backgroundColor = UIColor.red
+                completion(false)
+                return
+            }
+            
+            Auth.auth().signIn(withEmail: email, password: password) { authResults, error in
+//                print("--------------")
+//                print(authResults)
+//                print(error)
+//                print("--------------")
+                completion(authResults != nil)
         }
         
-        else {
-            loginTextField.backgroundColor = UIColor.red
-            passwordTextField.backgroundColor = UIColor.red
-            return
-        }
+//        guard let login = loginTextField.text,
+//              let password = passwordTextField.text
+//        else { return }
+//
+//        if login == "admin",
+//           password == "1111" {
+//            loginTextField.backgroundColor = UIColor.green
+//            passwordTextField.backgroundColor = UIColor.green
+//            performSegue(withIdentifier: "loginButton", sender: nil)
+//
+//        } else if login == "",
+//                  password == "" {
+//            loginTextField.backgroundColor = UIColor.green
+//            passwordTextField.backgroundColor = UIColor.green
+//            performSegue(withIdentifier: "loginButton", sender: nil)
+//        }
+//
+//        else {
+//            loginTextField.backgroundColor = UIColor.red
+//            passwordTextField.backgroundColor = UIColor.red
+//            return
+//        }
     }
     
 }

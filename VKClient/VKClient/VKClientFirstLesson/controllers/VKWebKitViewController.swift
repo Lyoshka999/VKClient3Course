@@ -78,7 +78,10 @@ class VKWebKitViewController: UIViewController, WKNavigationDelegate {
                 return dict
             }
         let token = params["access_token"]
+        let userId = params["user_id"]
         tokenString = token ?? "no token"
+        guard let userId = userId else { return }
+        SessionMyApp.instance.userId = userId
       //  SessionMyApp.instance.token = token ?? "no token"
         decisionHandler(.cancel)
        

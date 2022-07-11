@@ -133,7 +133,6 @@ class ServiceVK {
         parameters["q"] = searchText
         let url = baseUrl + path
         print(url)
-        print(session.token, session.userId)
         
         AF.request(url, method: .get, parameters: parameters).responseData { response in
             switch response.result {
@@ -156,7 +155,7 @@ class ServiceVK {
         urlComponents.host = "oauth.vk.com"
         urlComponents.path = "/authorize"
         urlComponents.queryItems = [
-            URLQueryItem(name: "client_id", value: "8194844"),
+            URLQueryItem(name: "client_id", value: "26493145"),
             URLQueryItem(name: "display", value: "mobile"),
             URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
             URLQueryItem(name: "scope", value: "262150"),

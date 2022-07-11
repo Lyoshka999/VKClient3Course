@@ -14,7 +14,7 @@ class SessionMyApp {
     private init() { }
     
     var token: String = ""
-    var userId: Int = 8194844
+    var userId: String = ""
     
 }
 

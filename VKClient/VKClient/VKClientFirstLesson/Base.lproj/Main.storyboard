@@ -55,7 +55,7 @@
                                                             <constraint firstAttribute="width" constant="129" id="gL0-9Z-cH8"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" textContentType="email"/>
                                                     </textField>
                                                 </subviews>
                                             </stackView>
@@ -78,7 +78,7 @@
                                                             <constraint firstAttribute="width" constant="129" id="a9f-qh-qfe"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                                     </textField>
                                                 </subviews>
                                             </stackView>
