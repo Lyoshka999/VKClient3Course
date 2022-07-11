@@ -7,13 +7,13 @@
 
 import Foundation
 
-class SessionFirstLesson {
+class SessionMyApp {
     
-    static let instance = SessionFirstLesson()
+    static let instance = SessionMyApp()
     
     private init() { }
     
-    var token: String = "vk1.a.bQLaYls-V6nensk-FFHJ89GtQHJydvBO3XQ5ck-qmUaqYq679yOZ01kCfTB-sMhmjpU8m8L5bka90zMG8VAU7wAMcnHEOstYyCDCwWZAKvKJ-E-UHhGGBnRXXD-4FEfGlZictExwbrrfaAFVHjq6Hozy1rrKMBUONf3DsVCY_RU5JUXXl8oIJiwyJR2f6ibj"
+    var token: String = ""
     var userId: Int = 0
     
 }
