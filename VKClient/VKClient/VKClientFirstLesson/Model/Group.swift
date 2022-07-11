@@ -6,16 +6,16 @@
 //
 
 import UIKit
-
+import RealmSwift
 //struct Group {
 //    var title = String()
 //    var avatar = UIImage()
 //}
 
-class Group: DataJSON, Decodable {
+class Group: Decodable, Object {
     
-    var name: String = ""
-    var groupPhotoData: String = ""
+  @Persisted var name: String = ""
+  @Persisted var groupPhotoData: String = ""
 //    var avatarGroup: UIImage = #imageLiteral(resourceName: "groups")
     
     enum CodingKeys: String, CodingKey {
